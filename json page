@@ -1,0 +1,96 @@
+HTML....
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="json.css"/>
+    
+</head>
+<body>
+    <div class="json-container" id="jsonContainer">
+        <h1 class="heading">JSON Stringified Values</h1>
+    </div>
+    <script src="json.js"></script>
+</body>
+</html>
+
+.CSS...
+
+.json-container{
+    padding: 30px;
+}
+
+.heading{
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.value-container{
+    background-color: #f3f3f3;
+    border-radius: 13px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.value{
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+
+.JS...
+
+let bikes = ["Hero" , "Honda", "Bajaj", "Suzuki", "Yamaha"];
+let todos = [
+    {
+        todo: "Attendng CCBP sessions",
+        todoStatus: "Completed",
+    },
+    {
+        todo: "Completing practice sets",
+        todoStatus: "Not Completed",
+    },
+    {
+        todo: "Asking Doubts",
+        todoStatus: "Completed"
+    }
+];
+
+let person = {
+
+    name: "Rahul",
+    age: 25,
+    gender: "Male",
+};
+
+let valuesToStringify = [bikes, todos, person];
+
+let jsonContainerEl = document.getElementById("jsonContainer");
+
+function createAndAppendValues(stringifiedValue){
+    let valueContainerEl = document.createElement("div");
+    valueContainerEl.classList.add("value-container");
+    jsonContainerEl.appendChild(valueContainerEl);
+
+
+    let valueEl = document.createElement("span");
+    valueEl.textContent = stringifiedValue;
+    valueEl.classList.add("value");
+    valueContainerEl.appendChild(valueEl);
+
+}
+
+function converToJSONString(value) {
+    let stringifiedValue = JSON.stringify(value);
+    createAndAppendValues(stringifiedValue);
+}
+
+for (let value of valuesToStringify){
+    converToJSONString(value);
+}
